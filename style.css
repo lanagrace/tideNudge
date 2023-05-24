@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #7495B1;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+canvas {
+  display: block;
+}
+
+
