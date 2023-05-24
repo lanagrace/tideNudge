@@ -50,7 +50,7 @@ function gotData(data) {
   totalArr = newArray.length; 
 
   for (let i = 0; i < totalArr; i++) {
-    size1[i] = floor(map(newArray[i], -4, 5, 50, 700)); 
+    size1[i] = floor(map(newArray[i], -4, 5, 10, 650)); 
   }
 
   console.log("The array: " + newArray);
@@ -90,8 +90,8 @@ function clock(){
         rotate(radians(90*i));
         noFill();
 
-        fill('#4BEE41');//#4BEE41
-        circle(0,-500,8);
+        //fill('#4BEE41');//#4BEE41
+        //circle(0,-330,8);
       
         pop();
     }
@@ -103,8 +103,8 @@ function clock(){
   let h = hour();
   let m = minute();
   //right corner info
-  text('Last updated: ' + (h-1)+ " : " + m, width - 270, height - 70);
-  text('Last measure: ' + lastNum + 'm', width-270, height - 30);
+  text('Last updated: ' + (h-1)+ " : " + m, width - 280, height - 70);
+  text('Last measure: ' + lastNum + 'm', width-280, height - 30);
   pop()
 
 }
@@ -149,26 +149,27 @@ function bgColor(){
 push()
   if(newArray[newArray.length-1] > 0){
      background('#7495B1');
-     fill('#51A87B')
-     rect(width/9, 15, 200,100)
+     noFill()
+     strokeWeight(2)
+     rect(width/10, 15, 250,110)
      textSize(34)
      fill('#FBD040')
-     text('HIGH TIDE', width/8, 55)
+     text('HIGH TIDE.', width/8, 55)
   }
    else{
       background('#51A87B')
       noStroke()
       fill('#7495B1')
-      rect(width/9, 15, 200,100)
+      rect(width/9, 15, 200,110)
       textSize(34)
       fill('#FBD040')
-      text('LOW TIDE', width/8, 55)
+      text('LOW TIDE.', width/8, 55)
       
  }
   //7495B1, 
  
   if(newArray[newArray.length-1] > newArray[newArray.length-2]){
-    text('RISING', width/7.5, 105)
+    text('RISING.', width/7.5, 105)
     //image(rising, 120, 50, 300, 300)
   }
 
@@ -178,7 +179,7 @@ push()
     //image(falling, 120, 50, 300, 300)
     fill('#FBD040')
     textSize(34)
-    text('FALLING', width/7.5, 105)
+    text('FALLING.', width/7.5, 105)
   } 
   pop()
 }
@@ -188,13 +189,13 @@ function clockInfo(){
   push()
   noStroke()
   //clock text
-  text('MIDNIGHT', (width/2) - 55, 25)
+  text('MIDNIGHT', (width/2) - 55, 55)
   
-  text('MIDDAY', (width/2) - 45, height - 15)
+  text('MIDDAY', (width/2) - 45, height - 40)
   
-  text('6PM', (width/5), (height/2)+10)
+  text('6PM', (width/6), (height/2)+10)
   
-  text('6AM', ((width/5)*4)-45, (height/2)+10)
+  text('6AM', ((width/5)*4)-25, (height/2)+10)
   
   text('Water temperature: ' + '11°C', 50, height - 50)
   pop()
@@ -203,6 +204,6 @@ function clockInfo(){
 
   noStroke();
   fill('#F17046') //51A87B, F17046
-  circle(width/2, height/2, 150) //circle in the middle
+  circle(width/2, height/2, 120) //circle in the middle
   pop()
 }
