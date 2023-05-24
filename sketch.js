@@ -11,7 +11,7 @@ let mainFont;
 //refresh page every minute
 setTimeout(function(){
   window.location.reload();
-}, 1 * 60 * 1000);
+}, 1 * 60 * 500);
 
 function preload() {
   loadJSON(
@@ -20,7 +20,11 @@ function preload() {
   );
 
   mainFont = loadFont('assets/MerriweatherSans-VariableFont_wght.ttf')
-  //console.log('preload')
+  rising = loadImage('assets/rising.png');
+  falling = loadImage('assets/falling.png');
+  low = loadImage('assets/low.png');
+  high = loadImage('assets/high.png');
+
 }
 
 function gotData(data) {
@@ -57,7 +61,7 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
 
   textFont(mainFont)
-  .textSize(16)
+  textSize(24)
   bgColor();
   
   clock();
@@ -99,8 +103,8 @@ function clock(){
   let h = hour();
   let m = minute();
   //right corner info
-  text('Last updated: ' + (h-1)+ " : " + m, width - 150, height - 50);
-  text('Last measure: ' + lastNum + 'm', width-150, height - 30);
+  text('Last updated: ' + (h-1)+ " : " + m, width - 270, height - 70);
+  text('Last measure: ' + lastNum + 'm', width-270, height - 30);
   pop()
 
 }
@@ -142,26 +146,41 @@ function tide(){
 function bgColor(){
   
   //tide info 
-
+push()
   if(newArray[newArray.length-1] > 0){
      background('#7495B1');
-     text('HIGH', width/10, 500)
+     fill('#51A87B')
+     rect(width/9, 15, 200,100)
+     textSize(34)
+     fill('#FBD040')
+     text('HIGH TIDE', width/8, 55)
   }
    else{
-   background('#51A87B')
-   text('LOW', width/10, 500)
+      background('#51A87B')
+      noStroke()
+      fill('#7495B1')
+      rect(width/9, 15, 200,100)
+      textSize(34)
+      fill('#FBD040')
+      text('LOW TIDE', width/8, 55)
+      
  }
   //7495B1, 
-
+ 
   if(newArray[newArray.length-1] > newArray[newArray.length-2]){
-    text('RISING', width/10, 100)
+    text('RISING', width/7.5, 105)
+    //image(rising, 120, 50, 300, 300)
   }
 
   else{ 
-    //circle(width/7, 200, 300)
-    text('FALLING', width/8, 200)
+    noStroke()
+    //circle(width/7, 200, 350)
+    //image(falling, 120, 50, 300, 300)
+    fill('#FBD040')
+    textSize(34)
+    text('FALLING', width/7.5, 105)
   } 
-  
+  pop()
 }
 
 function clockInfo(){
@@ -169,15 +188,15 @@ function clockInfo(){
   push()
   noStroke()
   //clock text
-  text('MIDNIGHT', (width/2) - 35, 25)
+  text('MIDNIGHT', (width/2) - 55, 25)
   
-  text('MIDDAY', (width/2) - 30, height - 15)
+  text('MIDDAY', (width/2) - 45, height - 15)
   
-  text('6AM', (width/5)+20, (height/2)+5)
+  text('6PM', (width/5), (height/2)+10)
   
-  text('6PM', ((width/5)*4)-45, (height/2)+5)
+  text('6AM', ((width/5)*4)-45, (height/2)+10)
   
-  text('Water temp: ' + '11', 50, height - 50)
+  text('Water temperature: ' + '11°C', 50, height - 50)
   pop()
   
   push()
